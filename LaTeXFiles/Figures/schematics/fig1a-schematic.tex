@@ -1,0 +1,86 @@
+\documentclass[tikz, border = 1pt]{standalone}
+\usepackage{tikz}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+
+\usetikzlibrary{positioning, intersections, calc}
+
+% http://tex.stackexchange.com/questions/47704/how-to-establish-node-anchor-like-points-on-a-tikz-rectangle-path-is-there-a
+\usetikzlibrary{fit}
+\makeatletter
+\tikzset{
+  fitting node/.style={
+    inner sep=0pt,
+    fill=none,
+    draw=none,
+    reset transform,
+    fit={(\pgf@pathminx,\pgf@pathminy) (\pgf@pathmaxx,\pgf@pathmaxy)}
+  },
+  reset transform/.code={\pgftransformreset}
+}
+\makeatother
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+
+\newlength{\width}
+\newlength{\height}
+\newlength{\ledheight}
+\newlength{\waterheight}
+\newlength{\cboatheight}
+\newlength{\cboatwidth}
+\newlength{\needleheight}
+
+\setlength{\width}{4cm}
+\setlength{\height}{2cm}
+\setlength{\ledheight}{.25\height}
+\setlength{\waterheight}{.75\height}
+\setlength{\cboatheight}{0.2cm}
+\setlength{\cboatwidth}{3\cboatheight}
+\setlength{\needleheight}{1cm}
+
+\begin{tikzpicture}[line width = 0.3mm]
+
+%LED Light
+\draw (0,0) rectangle (\width,\ledheight);
+\node (LED) at (0.5\width,0.5\ledheight) {LED Light};
+
+% Petridish
+\fill[fill opacity=0.4, fill=blue] (0,\ledheight) rectangle (\width, \waterheight);
+\draw (0,\height) -- (0,\ledheight) --++ (\width,0) -- (\width,\height);
+\draw[draw=none] (0, \waterheight) --++ (\width, 0) coordinate [pos=0.1] (Text);
+
+\node (air) [above = -0.1 of Text] {\small air};
+\node (water) [below = -0.1 of Text] {\small water};
+
+% CBoat
+\draw ($(0.5\width, \waterheight) - (0.5\cboatwidth,0) - (0,0.03)$) rectangle ($(0.5\width, \waterheight) + (0.5\cboatwidth,\cboatheight) - (0,0.03)$) node[fitting node, fill=black!60!white] (cboat) {};
+
+\coordinate (waterline) at (0, \waterheight);
+\coordinate (cbwest) at (cboat.west |- waterline);
+\coordinate (cbeast) at (cboat.east |- waterline);
+
+% miniscus
+\fill[fill opacity=0.4,fill=blue] (cboat.165) to [out=230, in=180] ($(cbwest) - (0.66\cboatwidth, 0)$) to (cbwest); 
+
+\fill[fill opacity=0.4,fill=blue] (cboat.15) to [out=310, in=0] ($(cbeast) + (0.66\cboatwidth, 0)$) to (cbeast); 
+
+\draw (cboat.north) --++ (0,\needleheight) coordinate [pos=0.75] (needle)  --++ (-0.5\width,0);
+
+% Camphor spreading
+\draw[->] ($(cbwest) - (0.1,0)$) --++ (-0.4,0) coordinate [pos=0.5] (cspreading);
+\draw[->] ($(cbeast) + (0.1,0)$) --++ (0.4,0);
+
+\node (cspreadingtext) [above left = 0.2cm and -0.6cm of cspreading] {\tiny spreading camphor};
+\node (cboattext) [above right = 0.2cm and 0.2cm of cboat] {\tiny camphor boat};
+\node (needletext) [right = 0.2 cm of needle] {\tiny needle};
+
+\draw[line width = 0.15mm, ->] ($(cspreadingtext.320) + (0,2pt)$) -> (cspreading);
+\draw[line width = 0.15mm, ->] (cboattext) -> (cboat);
+\draw[line width = 0.15mm, ->] (needletext) -> (needle);
+
+\end{tikzpicture}
+\end{document}
