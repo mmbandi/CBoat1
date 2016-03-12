@@ -1,0 +1,24 @@
+Figure 1:
+Schematic setup of the experiment. (a) Side view of a petri dish placed atop a uniform backlit illumination source with a camera on the opposite side. (b) Image of the petridish recorded by the camera, showing the cboat as a dark spot. Superimpose the perimeter of the region analyzed using a dashed circle (3.6 cm from the wall), and a sample trajectory of the cboat shown in blue. Part of the trajectory outside the analyzed region is shown in red.  
+
+Figure 2 (see Figure2.pdf for sketch):
+Plot of the 30-second average speed of the cboat as a function of time over the 3 hour duration of the experiment. The average speed decreases with time as CA from the cboat is released in the surrounding water and the strength of the Marangoni force decreases. Also, if possible, show the regions where the motion shows harmonic oscillations, steady state, and relaxation oscillations. Finally, also include labels/indicators for the particular instances where the three panels in the remaining part of this figure were taken.
+
+This figure also shows the 6 panels, three time series showing the three behaviors and three panels showing the corresponding comet tails.
+
+Figure 3:
+panel a: Amplitude of oscillations as a function of time (max minus min).
+panel b: Frequency as a function of time. 
+
+Figure 4:
+Plot of panels of cboat speed time series for three ambient surface tension, and the corresponding comet trails. Note that currently the intermediate steady motion mode, which should occur betwen the harmonic and relaxation oscillations, is missing.
+
+Supplementary Video 1: Movie of comet shaped pattern left behind a cboat in harmonic oscillation mode.
+Supplementary Video 2: Movie of comet shaped pattern left behind a cboat in steady mode.
+Supplementary Video 1: Movie of comet shaped pattern left behind a cboat in relaxation oscillation mode.
+
+Discussion:
+1. average cboat speed decreases with time as CA depletes from the cboat
+2. Marangoni effect because of SDS as a confounding factor, but perhaps not important.
+
+
