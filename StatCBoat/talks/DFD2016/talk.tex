@@ -1,0 +1,396 @@
+\pdfminorversion=4
+\documentclass[compress,10pt,dvipsnames,svgnames,pdftex]{beamer}
+\usepackage[utf8]{inputenc}
+% \usepackage{default}
+% \useoutertheme{split}
+% \useinnertheme{rounded}
+% \usecolortheme{seahorse}
+% \usecolortheme{lily}
+
+\usepackage{pgf,xcolor}
+\usepackage{amsmath,amsbsy,amssymb}
+\usepackage{multimedia}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\mdfdefinestyle{MyFrame}{%
+    linecolor=black!20!white,
+    outerlinewidth=0.5pt,
+    roundcorner=5pt,
+    innertopmargin=0.5\baselineskip,
+    innerbottommargin=0.25\baselineskip,
+    innerrightmargin=2pt,
+    innerleftmargin=5pt,
+    backgroundcolor=gray!5!white}
+    
+% \usepackage{slashbox}
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+\definecolor{UniBlue}{RGB}{1,1,1}
+\setbeamercolor{title}{fg=UniBlue}
+\setbeamercolor{frametitle}{fg=UniBlue}
+\setbeamercolor{structure}{fg=UniBlue}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+
+\newcommand{\ellcap}{{\ell_\text{c}}}
+\newcommand{\F}{{\boldsymbol F}}
+\newcommand{\Fh}{{{F}_h}}
+%\newcommand{\Fv}{{\boldsymbol{F}_v}}
+\newcommand{\Tv}{{\boldsymbol{T}}}
+\newcommand{\bn}{{\boldsymbol{\hat n}}}
+\newcommand{\bN}{{\boldsymbol{\hat N}}}
+\newcommand{\bt}{{\boldsymbol{\hat t}}}
+\newcommand{\bz}{{\boldsymbol{z}}}
+\newcommand{\bx}{{\boldsymbol{x}}}
+\newcommand{\by}{{\boldsymbol{y}}}
+\newcommand{\bT}{{\boldsymbol{T}}}
+\newcommand{\grad}{\boldsymbol{\nabla}}
+
+\newcommand{\back}[1]{{\color{gray}{#1}}}
+
+\definecolor{darker}{gray}{0.81569}
+\definecolor{lighter}{gray}{0.67843}
+
+\title{The structure, function, and evolution of the human foot}
+% \subtitle{Transverse arch made foot stiff}
+\author{Shreyas Mandre, Brown University}
+\date{Dynamic walking, \\ \scriptsize \today }
+\begin{document}
+
+\begin{frame}
+
+\centerline{\Large Around a {\bf camphoric-acid boat}, is the surfactant}
+~\\[1mm]
+\centerline{\Large adsorped on to the interface or dissolved in the bulk?}
+% \centerline{\large Stiffness of the human foot and evolution of the transverse arch}
+~ \\[1mm]
+\begin{columns}
+\column{4.25cm}
+\centerline{\small Shreyas Mandre}
+\centerline{\scriptsize Brown University, Providence RI USA}
+\column{4.25cm}
+\centerline{\small Mahesh Bandi}
+\centerline{\scriptsize OIST, Okinawa Japan}
+\end{columns}
+% ~\\[1mm]
+\begin{center}
+\begin{tabular}{ccc}
+{\scriptsize Ravi Singh} &
+{\scriptsize Dhiraj Singh} &
+{\scriptsize Sathish Akella} \\
+{\scriptsize Brown University} &
+{\scriptsize OIST} &
+{\scriptsize OIST}
+\end{tabular}
+\end{center}
+~ \\[1mm]
+
+\centerline{\small APS DFD 2016}
+\end{frame}
+
+\begin{frame}{What is a camphoric-acid boat?}
+
+\begin{columns}
+\column{6cm}
+\only<1>{
+\centerline{
+\movie[autostart,loop,height=4cm]{\pgfimage[height=4cm]{Figures/sigma72dypcm-001.jpeg}}{Figures/sigma72dypcm.avi}
+}
+}
+\only<2>{
+\centerline{
+\movie[autostart,loop,height=4cm]{\pgfimage[height=4cm]{Figures/CBconvection-001.jpeg}}{Figures/CBconvection.avi}
+}
+}
+\column{6cm}
+\only<2>{
+\begin{mdframed}[style=MyFrame]
+\scriptsize
+{\bf Notable previous work:}
+\scriptsize
+\begin{itemize}
+ \item B. Franklin in a Letter to Dr. Brownrigg, November 7, 1773. Published as Posthumous Writings of Dr. B. Franklin, F.R.S. \&c. London, 1819.
+ \item Volta, {\it Delectus Opusculorum Medicorum,} edited by Frank. Ticini, 1787.
+ \item Venturi, Annales de Chimie, vol. xxi. p. 262.
+ \item Carradori, various publications dated 1794, 1800, 1800, 1803, 1812.
+ \item Biot, Bulletin des Sciences par la Societe Philomatique, v54, p42, 1801.
+\end{itemize}
+\end{mdframed}
+}
+
+\only<1>{\pgfimage[width=6.33cm]{Figures/CBoat_Stamp_Schematic}}
+\end{columns}
+
+\begin{columns}
+\column{2cm}
+\centerline{\pgfimage[height=2cm]{Figures/CamphoricAcidMolecule}}
+\centerline{\tiny Camphoric acid}
+\column{4cm}
+\begin{mdframed}[style=MyFrame]
+{\scriptsize 
+{\bf Properties:} \\[1mm]
+\begin{tabular}{ll}
+Molecular weight& : 200.23 \\[1mm]
+Solubility in H$_2$O& : 8 g/L 
+\end{tabular}
+}
+\end{mdframed}
+
+\column{6cm}
+\begin{mdframed}[style=MyFrame]
+ {\scriptsize
+{\bf Conclusion of this talk:} \\
+Marangoni flow  is driven by a layer of camphoric acid \\
+adsorbed on the air-water interface.
+}
+\end{mdframed}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Approach: $u \sim K r^n$}
+\begin{columns}
+\column{6cm}
+\begin{mdframed}[style=MyFrame]
+\centerline{\bf Experiments}
+\only<1>{
+{\scriptsize
+\centerline{\pgfimage[width=6cm]{Figures/Experiment_Schematic}}
+}
+}
+\only<2>{
+\centerline{
+\movie[autostart,loop,height=3.4cm]{\pgfimage[height=3.4cm]{Figures/radialvelocity-001.jpeg}}{Figures/radialvelocity.avi}
+}
+}
+\end{mdframed}
+\column{6cm}
+\begin{mdframed}[style=MyFrame]
+\centerline{\bf Theory}
+{\scriptsize
+\centerline{\pgfimage[width=6cm]{Figures/Theory_Schematic}}
+}
+\end{mdframed}
+
+\end{columns}
+
+\begin{columns}
+\column{6cm}
+\begin{mdframed}[style=MyFrame]
+\centerline{\bf Strategy}
+~\\[-5mm]
+{\scriptsize
+\begin{itemize}
+ \item Assume nature of surfactant,
+ \item predict axisymmetric fluid velocity,
+ \item compare with experiments.
+\end{itemize}
+}
+\end{mdframed}
+\column{6cm}
+\begin{mdframed}[style=MyFrame]
+\centerline{\bf Challenges}
+~\\[-5mm]
+{\scriptsize
+\begin{itemize}
+ \item Rate of surfactant release unknown,
+ \item Surfactant equation of state unknown,
+ \item Singular dependence on viscosity.
+\end{itemize}
+}
+\end{mdframed}
+\end{columns}
+
+~\\[3mm]
+{\scriptsize {\bf Resolution:} Compare certain features of the flow that are independent of the unknown parameters.}
+\end{frame}
+
+\begin{frame}{Theoretical predictions: $u(r) \sim K r^n$}
+
+\begin{mdframed}[style=MyFrame]
+{\scriptsize
+\begin{align*}
+&\text{\bf Momentum conservation}:&  &\rho(uu_r + w u_z) = \mu u_{zz}& &\quad \Longrightarrow \quad&  &\dfrac{\rho u^2}{r} = \mu \dfrac{u}{\delta^2}&. \\
+&\text{\bf Marangoni stress}:&       &\mu u_z = \sigma_r&        &\quad \Longrightarrow \quad&  &\dfrac{\mu u}{\delta} = \dfrac{\Delta \sigma}{r}&
+\end{align*}
+\centerline{Surface tension $\sigma$ depends on the surfactant transport.}
+}
+\end{mdframed}
+
+
+\begin{columns}
+\column{3.5cm}
+\begin{mdframed}[style=MyFrame]
+{\scriptsize
+\centerline{\bf Adsorbed}
+\only<1>{
+\vspace{1mm}
+$\Delta \sigma = -\Gamma_2 c_2$ \\[1mm]
+$u r c_2 = Q_2 = \text{const}$ \\[3mm]
+\centerline{$u \sim \boldsymbol{\dfrac{1}{r^{3/5}}} \left(\dfrac{Q_2^2 \Gamma_2^2}{\mu \rho}\right)^{1/5}$}
+\vspace{0.5mm}
+}
+\only<2>{
+\centerline{\pgfimage[width=3.5cm]{Figures/Insoluble_scaling}}
+}
+}
+\end{mdframed}
+
+\column{3.5cm}
+\begin{mdframed}[style=MyFrame]
+{\scriptsize
+\centerline{\bf Soluble}
+\only<1>{
+\vspace{1mm}
+$\Delta \sigma = -\Gamma_3 c_3$ \\[1mm]
+$u r c_3 \delta = Q_3 = \text{const}$ \\[3mm]
+\centerline{$u \sim \boldsymbol{\dfrac{1}{r^{\vphantom{1}}}} \left(\dfrac{Q_3^{\vphantom{2}} \Gamma_3^{\vphantom{2}}}{\mu}\right)^{1/2} = \dfrac{K_3}{r}$}
+\vspace{0.5mm}
+}
+\only<2>{
+\centerline{\pgfimage[width=3.5cm]{Figures/Soluble_scaling}}
+}
+}
+\end{mdframed}
+
+\column{3.5cm}
+\begin{mdframed}[style=MyFrame]
+{\scriptsize
+\centerline{\bf Volatile}
+\only<1>{
+\vspace{5mm}
+$\Delta \sigma = -\Gamma_3 c_3$ \\[1mm]
+surfactant evaporation rate? \\[3mm]
+\centerline{$u \sim \boldsymbol{\dfrac{1}{r^{2/3}}} ? $}
+\vspace{0.5mm}
+}
+\only<2>{
+\centerline{\pgfimage[width=3.cm]{Figures/Question_Mark}}
+}
+}
+\end{mdframed}
+\end{columns}
+~\\[1mm]
+{\tiny Close analogy with boundary layers in thermo-marangoni flows (Napolitano, 1979; Zebib, Homsy and Meiberg, 1985; Carpenter and Homsy, 1990) and surfactant transport (Jensen, 1994, dis1995).}
+\end{frame}
+
+\begin{frame}{Experimental measurements}
+
+{\scriptsize
+\begin{columns}
+\column{6cm}
+\begin{mdframed}[style=MyFrame]
+\centerline{\bf Methanol (volatile)}
+\centerline{\pgfimage[width=6cm]{Figures/Methanol_scaling}}
+\end{mdframed}
+
+\column{6cm}
+\begin{mdframed}[style=MyFrame]
+\centerline{\bf Camphoric Acid (unknown)}
+\centerline{\pgfimage[width=6cm]{Figures/Cacid_scaling}}
+\end{mdframed}
+\end{columns}
+}
+~\\[5mm]
+\centerline{Distinction between a power law exponent of $3/5 = 0.6$ and $2/3 \approx 0.667$}
+\end{frame}
+
+\begin{frame}{Distinguishing exponents}
+
+\begin{columns}
+\column{6cm}
+\begin{mdframed}[style=MyFrame]
+\centerline{\bf Laser Doppler Velocimetry}
+\centerline{\pgfimage[width=5cm]{Figures/steadystate_setup_27june}}
+\end{mdframed}
+
+\column{6cm}
+\begin{mdframed}[style=MyFrame]
+\centerline{\bf Measured exponent}
+\centerline{\pgfimage[width=6.2cm]{Figures/Cacid_exponent}}
+\end{mdframed}
+
+\end{columns}
+
+\begin{columns}
+\column{4cm}
+\begin{mdframed}[style=MyFrame]
+{\scriptsize
+{\bf Measurement details:}
+\begin{itemize}
+ \item 5-digit accuracy in velocity 
+ \item Spatial resolution $200~\mu m$.
+ \item Change fluid viscosity by using water mixed with 0\%, 10\%, 20\%, 30\%, 35\% glycerol.
+\end{itemize}
+
+}
+\end{mdframed}
+
+\column{7cm}
+\begin{mdframed}[style=MyFrame]
+{\scriptsize 
+{\bf Isolating the exponent:}
+\begin{align*}
+u(r) = K r^n \quad \rightarrow \quad \log u = n \log r + \log K \quad \rightarrow \quad \boldsymbol{n = \dfrac{d (\log u)}{d (\log r)}} 
+\end{align*}
+\vspace{-6mm}
+
+{\tiny 
+$n=-3/5$ ~~: Adsorbed surfactant \\[-1mm]
+$n=-2/3?$ : Volatile miscible surfactant \\[-1mm]
+$n=-1$ ~~~~~: Soluble/miscible surfactant
+}
+}
+\end{mdframed}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conclusion}
+\begin{columns}
+\column{6cm}
+\begin{mdframed}[style=MyFrame]
+{\scriptsize 
+{\bf Summary of results:} \\
+\begin{itemize}
+ \item Distinguish between $u \sim r^{-3/5}$ and $r^{-2/3}$.
+ \item For camphoric acid boat: $u(r) \sim K r^{-3/5}$.
+ \item Therefore, camhoric acid must be spreading as an adsorbed phase, despite being soluble in water.
+\end{itemize}
+}
+\end{mdframed}
+
+\begin{mdframed}[style=MyFrame]
+{\scriptsize 
+{\bf Ongoing work:} \\
+\begin{itemize}
+ \item Mechanism for volatile surfactants
+\end{itemize}
+}
+
+
+\end{mdframed}
+\centerline{
+\movie[autostart,loop,height=3.5cm]{\pgfimage[height=3.5cm]{Figures/sigma72dypcm-001.jpeg}}{Figures/sigma72dypcm.avi}
+}
+
+\column{6cm}
+\begin{mdframed}[style=MyFrame]
+{\scriptsize
+\centerline{\bf Measured exponent}
+\centerline{\pgfimage[width=6.2cm]{Figures/Cacid_exponent}}
+}
+\end{mdframed}
+\begin{mdframed}[style=MyFrame]
+{\scriptsize 
+{\bf Theoretical predictions: $u(r) = K r^n$} \\
+{\scriptsize
+$n=-3/5$ ~~: Adsorbed surfactant \\[-1mm]
+$n=-2/3?$ : Volatile miscible surfactant \\[-1mm]
+$n=-1$ ~~~~~: Soluble/miscible surfactant
+}
+}
+\end{mdframed}
+\end{columns}
+
+\end{frame}
+
+
+\end{document}

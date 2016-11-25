@@ -1,0 +1,191 @@
+\documentclass[aps, floatfix, superscriptaddress]{revtex4}
+\usepackage{amsmath, amssymb, amsfonts, gensymb}
+\bibliographystyle{apsrev}
+\usepackage{graphicx}
+\graphicspath{ {Figures/} }
+
+\begin{document}
+ 
+\title{Shreyas' corner - deriving the similarity solution}
+\author{Shreyas Mandre}
+\affiliation{School of Engineering, Brown University}
+\maketitle
+
+\section{Mathematical model}
+Consider an semi-infinite bath of fluid with a free interface along the $x-y$ plane.
+An insoluble surfactant that spreads adsorbed to the free interface is released at the rate $Q$ from a point source located at the origin.
+The axisymmetric forcing suggests description of the flow in cylindrical polar coordinates $(r,z)$ using the radial and axial components of velocity $u(r,z)$ and $w(r,z)$ respectively, and the surfactant concentration by $c(r)$.
+
+The fluid flow satisfies the incompressible Navier-Stokes equations
+\begin{align}
+ u u_r + w u_z &= -\dfrac{1}{\rho} p_r + \nu \left[ \dfrac{1}{r} \left( ru_r \right)_r -\dfrac{u}{r^2} + u_{zz} \right], \\
+ u w_r + w w_z &= -\dfrac{1}{\rho} p_z + \nu \left[ \dfrac{1}{r} \left( rw_r \right)_r + w_{zz} \right], \\
+ \dfrac{1}{r} (ru)_r + w_z &= 0.
+\end{align}
+The interface is assumed to be fixed at $z=0$ due to the presence of strong surface tension compared to other stresses that arise in the fluid (cite Jensen here?), which implies
+\begin{align}
+ w=0 \qquad \text{ at } \qquad z=0.
+\end{align}
+The velocity field is forced on the boundary by a Marangoni stress due to non-uniform distribution of the surface tension $\sigma$
+\begin{align}
+ \mu u_z = \sigma_r, \qquad \text{ where } \qquad \sigma = \sigma_0 - \Gamma c,
+\end{align}
+$\Gamma$ being the assumed constant rate of change of surface tension with surfactant concentration.
+
+\section{Similarity solution}
+The power law in the surface velocity profile implies scale free dynamics, and therefore a self-similar flow.
+We attempt to find the flow profile here.
+
+Using the boundary layer approximation, the governing equations simplify to:
+\begin{align}
+ \dfrac{1}{r} (ru)_r + w_z &= 0, \\
+ uu_r + wu_z &= \nu u_{zz},
+\end{align}
+with the boundary conditions
+\begin{align}
+ ru(r,z=0) c(r) &= q = \text{constant}, \\
+ \mu u_z(r, z=0) &= - \Gamma c_r.
+\end{align}
+These equations represent the conservation of mass, momentum, surfactant, and the Marangoni stress balance.
+
+The two boundary conditions can be combined into one by eliminating $c(r)$ using
+\begin{align}
+c(r) = \dfrac{q}{r u(r,z=0)}, \text{ to get } \\
+u_z(r, z=0) = -\dfrac{\Gamma q}{\mu} \left( \dfrac{1}{r u(r, z=0)} \right)_r = -K \left( \dfrac{1}{r u(r, z=0)} \right)_r,
+\end{align}
+where $\Gamma$, $q$ and $\mu$ always appear in the combination represented by $K$.
+
+Stream function $\psi(r,z)$ can be used to satisfy mass conservation by defining:
+\begin{align}
+ u = \dfrac{1}{r} \psi_z, \quad w = -\dfrac{1}{r} \psi_r.
+\end{align}
+
+The self-similar flow can then be described using a similarity variable
+\begin{align}
+ \xi = \dfrac{z}{\delta(r)},
+\end{align}
+where $\delta(r)$ is the boundary layer thickness, and
+\begin{align}
+ \psi(r,z) = a \Psi(r) \delta(r) f(\xi),
+\end{align}
+where we expect $\delta(r)$ and $\Psi(r)$ to be power-laws in $r$. The following relations for the derivatives of these quantities are handy:
+\begin{align}
+ \dfrac{\partial \xi}{\partial z} = \dfrac{1}{\delta(r)}, \qquad \text{ and }  \qquad \dfrac{\partial \xi}{\partial r} = -\dfrac{\xi}{r} \left( \dfrac{r \delta'(r)}{\delta(r)} \right) = -\dfrac{m \xi}{r}. 
+\end{align}
+Note that since $\delta(r) \propto r^m$ is a power law, we expect $r\delta'(r)/\delta(r)$ to be the exponent $m$.
+We similarly assume $\Psi(r) \propto r^n$ and expect $\Psi'(r) = n\Psi(r)/r$.
+According to this ansatz, 
+\begin{align}
+ u(r,z) = \dfrac{a \Psi(r)}{r} f'(\xi), \qquad \text{ and } \qquad  
+ w(r,z) =-\dfrac{a \Psi(r) \delta(r)}{r^2}  \left( (m+n) f(\xi) - {m\xi} f'(\xi)\right).
+\end{align}
+To substitute this ansatz in the momentum balance, we need the following expressions:
+\begin{align}
+ u_r = \dfrac{a\Psi(r)}{r^2} \left( (n-1) f'(\xi) - {m \xi} f''(\xi) \right), \qquad 
+ u_z = \dfrac{a \Psi(r)}{r \delta(r)} f''(\xi), \qquad \text{ and } \qquad 
+ u_{zz} = \dfrac{a \Psi(r)}{r \delta(r)^2} f'''(\xi)
+\end{align}
+
+The momentum balance then reads
+\begin{align}
+ \dfrac{a^2  \Psi(r)^2}{r^3} \left[ f'(\xi) ((n-1) f'(\xi) - {m \xi} f''(\xi) )  - f''(\xi) ( (m+n) f(\xi) - {m\xi} f'(\xi) ) \right] = \dfrac{\nu a \Psi(r) }{ r\delta(r)^2} f'''(\xi),
+\end{align}
+which simplifies to
+\begin{align}
+\delta(r) = \sqrt{\dfrac{\nu r^2}{a \Psi(r)} } \qquad \text{ i. e. } m = 1-\dfrac{n}{2} \qquad \text{ and } \qquad  (n-1) f'(\xi)^2  -  \dfrac{2+n}{2} f(\xi)f''(\xi) = f'''(\xi),
+\end{align}
+In order to substitute the ansatz in the boundary condition, we evaluate
+\begin{align}
+ \left( \dfrac{1}{r u(r, z)} \right)_r = \left( \dfrac{1}{a \Psi(r) f'(\xi)} \right)_r = -\left( \dfrac{1}{r a \Psi(r) f'(\xi)^2} \right) \left( n f'(\xi) - {m\xi} f''(\xi) \right)
+\end{align}
+which upon said substitution yields
+\begin{align}
+ \dfrac{a \Psi(r)}{r \delta(r)} f''(0) = Kn \left( \dfrac{1}{r a \Psi(r) f'(0)} \right).
+\end{align}
+Substituting $\delta(r)$ and equating the dimensional, the power law, and the self-similar variables separately yields
+\begin{align}
+a = K^{2/5} \nu^{1/5}, \qquad \Psi(r) = r^{2/5}, \qquad f''(0) f'(0) = n = \dfrac{2}{5}.
+\end{align}
+
+\vspace{3mm}
+The solution so far may be summarized in terms of a self-similar profile $f(\xi)$ as:
+\begin{align}
+\begin{split}
+ \psi(r,z) = (a \nu)^{1/2} r^{6/5} f(\xi), \text{ where } a=K^{2/5} \nu^{1/5}, \quad \xi = \dfrac{z}{\delta(r)}, \quad \delta(r) = \left( \dfrac{\nu }{a }\right)^{1/2} r^{4/5}, \\
+ u(r,z) = ar^{-3/5} f'(\xi), \quad w(r,z) = -\dfrac{ (\nu a)^{1/2} }{5} r^{-4/5}  \left( 6f(\xi) - 4\xi f'(\xi)\right), \quad c(r) = \dfrac{q}{a r^{2/5} f'(0)}, \\
+ n=\dfrac{2}{5}, \quad m = \dfrac{4}{5}.
+\end{split}
+\end{align}
+
+The ordinary differential equation for $f(\xi)$
+\begin{align}
+ f'''(\xi) +  \dfrac{3}{5} f'(\xi)^2  +  \dfrac{6}{5} f(\xi)f''(\xi) = 0,
+ % - \dfrac{8}{5} \xi f''(\xi) f'(\xi) 
+\label{eqn:selfsimilarode}
+\end{align}
+is to be solved with the boundary conditions
+\begin{align}
+ f(0) = 0, \qquad f''(0) f'(0) = \dfrac{2}{5}, \qquad f'(-\infty) = 0.
+\label{eqn:selfsimilarbc}
+\end{align}
+
+Equations (\ref{eqn:selfsimilarode}-\ref{eqn:selfsimilarbc}) are numerically solved using a shooting method, which we outline next. 
+(The Python 3 program used to implement this method is shown in figure \ref{fig:python3program}).
+The method starts with a guess for $f''(0)$ (represented as \texttt{fpp0} in the program) and sets the corresponding $f'(0)$ using \eqref{eqn:selfsimilarbc}.
+The initial value problem with the guessed initial condition is then solved numerically using a fourth order Runge Kutta method and its asymptotic behavior as $\xi \to \infty$ is examined. The solution asymptotically either diverges to $\infty$ or $-\infty$ as $f\sim C \xi^{2/3}$, thereby violating the far-field boundary condition in \eqref{eqn:selfsimilarbc}. 
+However, between the cases that diverge to $\infty$ and those that diverge to $-\infty$ is one solution that remains bounded.
+For this case $f$ approaches a constant values, $f_\infty$.
+The possibility of an asymptotic approach of $f$ to $f_\infty$ may be examined by making the ansatz $f = f_\infty + \epsilon g(\xi) + \dots$ for $\epsilon \ll 1$ and solving for $g$.
+The resulting solution is
+\begin{align}
+ f(\xi) = f_\infty + \epsilon \left( a_1 + b_1 \xi + c_1 e^{-6f_\infty \xi/5}  \right) + O(\epsilon^2),
+\end{align}
+where $a_1$, $b_1$ and $c_1$ represent arbitrary constants of integration.
+Note that $b_1$ must be zero so that asymptotic ordering of the solution is maintained as $\xi \to \infty$ and $a_1$ may be absorbed into $f_\infty$.
+The objective of the shooting method is to guess the initial value $f''(0)$ such that this bounded solution with $b_1=0$ is asymptotically achieved.
+We find this solution by successive bisection of the interval of $f''(0)$ with end points that lead to diverging solutions with opposite signs.
+This bisection was implemented manually to determine that $f''(0) = 0.402287361293201$ solves (\ref{eqn:selfsimilarode}-\ref{eqn:selfsimilarbc}) numerically to 15 digit accuracy.
+The resulting solution for $f(\xi)$ and its derivatives is shown in figure \ref{fig:similaritysoln}.
+
+\begin{figure}
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def fun(t, y):
+    f = y[0]
+    fp = y[1]
+    fpp = y[2]
+    fppp = - 0.6*fp**2 - 1.2*f*fpp 
+    return np.array([fp, fpp, fppp])
+ 
+t = 0
+N = 60000
+dt = -1e-3
+T = np.linspace(0, dt*N, N+1)
+fpp0 = 0.402287361293201
+y = np.array([0, 0.4/fpp0, fpp0])
+Y = np.zeros((N+1,3));
+
+ii = 0
+for ii in range(N+1):
+    Y[ii,:] = y[np.newaxis, :]
+    dy1 = dt*fun(t, y)
+    dy2 = dt*fun(t+dt/2, y+dy1/2)
+    dy3 = dt*fun(t+dt/2, y+dy2/2)
+    dy4 = dt*fun(t+dt, y+dy3)
+    y = y + (dy1+2*dy2+2*dy3+dy4)/6
+    t = t + dt
+
+\end{verbatim}
+\caption{Python3 program to solve the initial value problem for $f(\xi)$. The program converts the thrid order ordinary differential equation \eqref{eqn:selfsimilarode} to three first order equations for the variables \texttt{y[0]}, \texttt{y[1]}, and \texttt{y[2]}, and integrates them using the standard fourth order Runge-Kutta method.}
+\label{fig:python3program}
+\end{figure}
+
+\begin{figure}
+\includegraphics{Figures/bl_profiles}
+\caption{The solution of (\ref{eqn:selfsimilarode}-\ref{eqn:selfsimilarbc}) obtained using shooting method.} 
+\label{fig:similaritysoln}
+\end{figure}
+
+\end{document}
